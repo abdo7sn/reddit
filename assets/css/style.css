@@ -1,0 +1,1932 @@
+body {
+    font-family: 'apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #030303;
+    margin: 0;
+    padding: 0;
+    color: #d7dadc;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    direction: rtl; /* Add RTL support for Arabic */
+    text-align: right; /* Align text to the right for Arabic */
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Top Navigation */
+.top-nav {
+    background: #1a1a1b;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 1.9px solid #707073;
+    transition: background 0.3s ease;
+}
+
+.top-nav .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the icon and text */
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.top-nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo elements and sidebar-toggle */
+    position: relative; /* Ensure toggle stays within logo context */
+}
+
+.top-nav .logo-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.top-nav:hover {
+    background: #212122;
+}
+
+.top-nav .logo a {
+    color: #ff4500;
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.top-nav .logo a:hover {
+    color: #ff5722;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.desktop-search {
+    flex: 1;
+    margin: 0 30px;
+    position: relative;
+    max-width: 600px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #272729;
+    color: #d7dadc;
+    font-size: 14px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    background: #303032;
+    box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #818384;
+}
+
+.search-submit {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #818384;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.search-submit:hover {
+    color: #ff4500;
+}
+
+/* Mobile Search Icon */
+.mobile-search-icon {
+    display: none; /* Use flex to center the icon */
+    align-items: center;
+    justify-content: center;
+    width: 20px; /* Larger size for prominence */
+    height: 30px;
+    border-radius: 50%; /* Circular shape */
+    color: #d7dadc; /* Match text color */
+    font-size: 20px; /* Larger icon for visibility */
+}
+
+/* Hover State */
+.mobile-search-icon:hover {
+    color: #ff4500; /* Accent color on hover */
+}
+
+/* Ensure the icon inside is centered */
+.mobile-search-icon i {
+    line-height: 1; /* Prevent vertical misalignment */
+    font-size: 24px;
+}
+/* Mobile Search Form Styling */
+.mobile-search-form {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: calc(100% + 10px); /* Position just below the top-nav with a 10px offset */
+    left: 0; /* Full width in RTL */
+    right: 0;
+    background: #1a1a1b; /* Match the navbar background */
+    padding: 15px 20px; /* Comfortable padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Match the navbar shadow */
+    z-index: 998; /* Below the top-nav (z-index: 1000) but above other content */
+    transform: translateY(-10px); /* Start slightly above for slide-down effect */
+    opacity: 0; /* Start invisible for fade effect */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth slide and fade */
+}
+
+/* Show the mobile search form when active */
+.mobile-search-form.active {
+    display: block;
+    transform: translateY(0); /* Slide down to its natural position */
+    opacity: 1; /* Fade in */
+}
+
+/* Ensure the search form inside mobile-search-form looks good */
+.mobile-search-form .search-form {
+    width: 100%;
+    margin: 0;
+}
+
+/* Hide screen reader text */
+.screen-reader-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.top-nav .nav-actions a {
+    color: #d7dadc;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between text and icon on larger screens */
+}
+
+
+.top-nav .nav-actions .nav-text {
+    display: inline; /* Show text by default on larger screens */
+}
+
+.top-nav .nav-actions .nav-icon {
+    display: none; /* Hide icons by default on larger screens */
+}
+
+.top-nav .nav-actions a:hover {
+    color: #fff;
+}
+
+.top-nav .nav-actions a.login {
+    background: #ff4500;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.top-nav .nav-actions a.login:hover {
+    background: #ff5722;
+    transform: translateY(-2px);
+}
+
+.top-nav .nav-actions .today-posts i {
+    display: none;
+}
+
+/* Style nav-actions for icon-only display on mobile */
+.top-nav .nav-actions {
+    display: flex;
+    align-items: center;
+}
+
+.top-nav .nav-actions a.login,
+.top-nav .nav-actions a.logout,
+.top-nav .nav-actions a.admin-login,
+.top-nav .nav-actions a.today-posts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Icon size */
+}
+
+.top-nav .nav-actions a.login i,
+.top-nav .nav-actions a.logout i,
+.top-nav .nav-actions a.admin-login i,
+.top-nav .nav-actions a.today-posts i {
+    display: inline-block; /* Ensure icons are visible */
+    margin-left: 0; /* Remove margin for RTL */
+    margin-right: 7px;
+}
+
+.highlight {
+    background: #ff4500;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none; /* Hidden by default on larger screens */
+    background: #1a1a1b; /* Matches top-nav background */
+    border: 1px solid #707073; /* Subtle border */
+    color: #d7dadc; /* Light gray icon */
+    font-size: 20px; /* Size of the burger icon */
+    padding: 8px 12px; /* Comfortable click area */
+    border-radius: 4px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transitions */
+    position: static; /* Remove absolute positioning to flow with logo */
+    margin-left: 10px; /* Space from logo text */
+}
+
+/* Hover State */
+.sidebar-toggle:hover {
+    background: #272729;
+    color: #ff4500;
+    border-Color: #ff4500;
+    transform: scale(1.05);
+}
+
+/* Active State (when sidebar is open) */
+.sidebar-toggle.active {
+    background: #ff4500;
+    color: #fff;
+    border-color: #ff4500;
+    transform: translateY(-2px);
+}
+
+/* Icon Styling (Font Awesome) */
+.sidebar-toggle i {
+    line-height: 1; /* Ensure icon aligns properly */
+}
+
+/* Search page */
+.search-header {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #1a1a1b;
+    border-radius: 8px;
+}
+
+.search-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #fff;
+}
+
+.search-header h1 span {
+    color: #ff4500;
+}
+
+.search-header p {
+    font-size: 14px;
+    color: #818384;
+    margin: 0;
+}
+
+.no-results {
+    padding: 20px;
+    background: #1a1a1b;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.no-results h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 10px;
+}
+
+.no-results p {
+    font-size: 14px;
+    color: #818384;
+    margin: 0 0 20px;
+}
+
+.no-results .search-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination .nav-links {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.pagination a, .pagination span {
+    padding: 8px 12px;
+    background: #1a1a1b;
+    color: #d7dadc;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pagination a:hover {
+    background: #272729;
+    color: #fff;
+}
+
+.pagination .current {
+    background: #ff4500;
+    color: #fff;
+}
+
+.pagination i {
+    font-size: 12px;
+}
+
+/* Login Modal Styling */
+.login-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 1000; /* Above other elements */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show the modal when active */
+.login-modal.active {
+    display: flex;
+}
+
+/* Modal Content */
+.login-modal-content {
+    position: relative;
+    background: #1a1a1b; /* Match the theme's background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    color: #d7dadc;
+}
+
+/* Close Button */
+.login-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #818384;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.login-modal-close:hover {
+    color: #ff4500; /* Accent color on hover */
+}
+
+/* Modal Body */
+.login-modal-body h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #d7dadc;
+}
+
+.login-modal-body p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #818384;
+}
+
+/* Login Form Styling */
+#loginform-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#loginform-modal p {
+    margin: 0;
+}
+
+#loginform-modal label {
+    display: block;
+    text-align: right; /* RTL support */
+    font-size: 14px;
+    color: #d7dadc;
+    margin-bottom: 5px;
+}
+
+#loginform-modal input[type="text"],
+#loginform-modal input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #272729;
+    color: #d7dadc;
+    font-size: 14px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#loginform-modal input[type="text"]:focus,
+#loginform-modal input[type="password"]:focus {
+    background: #303032;
+    box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.3);
+    outline: none;
+}
+
+#loginform-modal .login-remember {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #d7dadc;
+}
+
+#loginform-modal input[type="submit"] {
+    background: #ff4500;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#loginform-modal input[type="submit"]:hover {
+    background: #ff5722;
+    transform: translateY(-1px);
+}
+
+/* Register Link */
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #818384;
+}
+
+.register-link a {
+    color: #ff4500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #ff5722;
+}
+
+/* Logout Confirmation Buttons */
+.logout-btn,
+.cancel-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin: 5px;
+}
+
+.logout-btn {
+    background: #ff4500;
+    color: #fff;
+}
+
+.logout-btn:hover {
+    background: #ff5722;
+    transform: translateY(-1px);
+}
+
+.cancel-btn {
+    background: #272729;
+    color: #d7dadc;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background: #303032;
+    transform: translateY(-1px);
+}
+
+/* RTL Support */
+body[direction="rtl"] .login-modal-content {
+    text-align: center; /* Keep centered for RTL */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .login-modal-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+    .login-modal-body h2 {
+        font-size: 20px;
+    }
+    .login-modal-body p {
+        font-size: 14px;
+    }
+}
+
+
+/* Pages */
+.page-content {
+    background: #1a1a1b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.page-content h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 20px;
+}
+
+.page-content .content {
+    font-size: 16px;
+    color: #d7dadc;
+    line-height: 1.8;
+}
+
+.page-content .content p {
+    margin: 0 0 15px;
+}
+
+.page-content .content a {
+    color: #0079d3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.page-content .content a:hover {
+    color: #1a8cff;
+}
+
+/* Archive */
+.archive-header {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #1a1a1b;
+    border-radius: 8px;
+}
+
+.archive-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #fff;
+}
+
+.archive-header .archive-description {
+    font-size: 14px;
+    color: #818384;
+    line-height: 1.6;
+}
+
+.archive-header .archive-description p {
+    margin: 0;
+}
+
+/* 404 */
+.error-404 {
+    text-align: center;
+    padding: 40px;
+    background: #1a1a1b;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.error-404 h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #ff4500;
+    margin: 0 0 20px;
+}
+
+.error-404 p {
+    font-size: 16px;
+    color: #d7dadc;
+    margin: 0 0 20px;
+}
+
+.error-404 .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff4500;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.error-404 .button:hover {
+    background: #ff5722;
+    transform: translateY(-2px);
+}
+
+.error-404 .search-form {
+    max-width: 400px;
+    margin: 20px auto 0;
+}
+
+/* Comments */
+.comments-area {
+    background: #1a1a1b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0; /* Add spacing above the comment list */
+}
+
+.comment-body {
+    border-bottom: 1.9px solid #272729;
+    padding: 15px 0;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Comment Author Styling */
+.comment-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Space between avatar and name */
+    padding: 6px 12px;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 19px;
+    color: #d7dadc;
+}
+
+/* Comment Author Avatar */
+.comment-author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(#272729, #272729) padding-box,
+                linear-gradient(45deg, #ff4500, #707073) border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect for the avatar */
+.comment-author:hover .comment-author-avatar {
+    transform: scale(1.1);
+}
+
+/* Comment Author Link */
+.comment-author .author-link {
+    font-weight: 600;
+    color: #d7dadc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for the author link */
+.comment-author:hover .author-link {
+    color: #ff4500;
+}
+
+/* Fallback for Missing Avatars */
+.comment-author-avatar[src*="gravatar.com/avatar/00000000000000000000000000000000"],
+.comment-author-avatar:not([src]) {
+    background: #1a1a1b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #d7dadc;
+}
+
+/* Add a user icon as a fallback */
+.comment-author-avatar[src*="gravatar.com/avatar/00000000000000000000000000000000"]::before,
+.comment-author-avatar:not([src])::before {
+    content: "\f007"; /* Font Awesome user icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+/* RTL Support */
+body[direction="rtl"] .comment-author {
+    flex-direction: row; /* Avatar before name in RTL */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .comment-author {
+        gap: 8px;
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+    .comment-author-avatar {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.comment-date {
+    font-size: 12px;
+    color: #818384;
+}
+
+.comment-date a {
+    color: #818384;
+    text-decoration: none;
+}
+
+.comment-date a:hover {
+    color: #fff;
+}
+
+.comment-content {
+    font-size: 14px;
+    color: #d7dadc;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.comment-content p {
+    margin: 0;
+}
+
+.comment-awaiting-moderation {
+    font-style: italic;
+    color: #ff4500;
+}
+
+.comment-actions .reply a {
+    font-size: 12px;
+    color: #d7dadc; /* Soft white-gray for reply link */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.comment-actions .reply a:hover {
+    color: #fff;
+}
+
+.comment-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.comment-navigation a {
+    color: #d7dadc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.comment-navigation a:hover {
+    color: #fff;
+}
+
+.comment-respond {
+    margin-bottom: 20px; /* Add spacing below the form */
+}
+
+.comment-form p {
+    margin: 0 0 15px;
+}
+
+.comment-form label {
+    display: block;
+    font-size: 14px;
+    color: #d7dadc;
+    margin-bottom: 5px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    background: #272729;
+    border: none;
+    border-radius: 4px;
+    color: #d7dadc;
+    font-size: 14px;
+}
+
+.comment-form textarea {
+    resize: vertical;
+}
+
+.comment-form textarea::placeholder {
+    color: #818384;
+}
+
+.comment-form .submit.button {
+    padding: 10px 20px;
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.comment-form .submit.button:hover {
+    background: #ff5722;
+    transform: translateY(-2px);
+}
+
+/* Left Sidebar */
+.left-sidebar {
+    width: 240px;
+    background: #1a1a1b;
+    padding: 20px;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    border-right: 1.9px solid #707073;
+}
+
+.left-sidebar h3 {
+    color: #818384;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 20px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.left-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-sidebar ul li {
+    margin-bottom: 8px;
+}
+
+.left-sidebar ul li a {
+    color: #d7dadc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.left-sidebar ul li a:hover {
+    color: #fff;
+    background: #272729;
+}
+
+.left-sidebar ul li a i {
+    margin-left: 12px;
+    font-size: 16px;
+    color: #818384;
+    transition: color 0.3s ease;
+}
+
+.left-sidebar ul li a:hover i {
+    color: #fff;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #030303;
+    border-left: 1px solid #707073;
+    border-right: 1px solid #707073;
+}
+
+.top-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.top-post-card {
+    flex: 1 1 calc(25% - 10px);
+    background: #1a1a1b;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.top-post-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.top-post-card:hover img {
+    opacity: 0.9;
+}
+
+.top-post-card .card-content {
+    padding: 10px;
+}
+
+.top-post-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    color: #fff;
+    line-height: 1.4;
+}
+
+.top-post-card h4 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.top-post-card h4 a:hover {
+    color: #d7dadc;
+}
+
+.top-post-card p {
+    font-size: 12px;
+    color: #0079d3;
+    margin: 0;
+    font-weight: 400;
+}
+
+.top-post-card p a {
+    color: #0079d3;
+    text-decoration: none;
+}
+
+.top-post-card p a:hover {
+    color: #1a8cff;
+}
+
+.sorting-tabs {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #707073;
+    padding-bottom: 5px;
+}
+
+.sorting-tabs a {
+    color: #d7dadc;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    display: inline-block;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.sorting-tabs a:hover {
+    color: #fff;
+}
+
+.sorting-tabs a.active {
+    color: #fff;
+    border-bottom: 2px solid #ff4500;
+}
+
+.reddit-post {
+    background: #1a1a1b;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Professional Meta Section Styling */
+.meta {
+    display: inline-flex; /* Use flex to align all elements in a row */
+    align-items: center; /* Vertically center all elements */
+    gap: 12px; /* Consistent spacing between elements */
+    padding: 8px 14px; /* Comfortable padding for a card-like appearance */
+    border-radius: 20px; /* Rounded corners for a modern look */
+    font-size: 14px; /* Consistent font size for all text */
+    color: #d7dadc; /* Match the theme's text color */
+}
+
+
+/* Author Wrapper Styling */
+.meta .author-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between avatar and name */
+    padding: 0; /* Remove padding (handled by .meta) */
+    background: none; /* Remove the background (handled by .meta) */
+    border-radius: 0; /* Remove border-radius (handled by .meta) */
+}
+
+/* Author Avatar Styling */
+.meta .author-avatar {
+    width: 26px; /* Slightly larger for prominence */
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(#272729, #272729) padding-box, /* Match the meta background */
+                linear-gradient(45deg, #ff4500, #707073) border-box; /* Gradient border */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for hover */
+}
+
+/* Hover effect for the avatar */
+.meta .author-wrapper:hover .author-avatar {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Author Link Styling */
+.meta .author-link {
+    font-weight: 600; /* Bolder for emphasis */
+    color: #d7dadc; /* Match the meta text color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the author link */
+.meta .author-wrapper:hover .author-link {
+    color: #ff4500; /* Accent color on hover */
+}
+
+/* Category Link Styling */
+.meta a[href*="category"] { /* Target the category link */
+    font-weight: 500; /* Slightly lighter than the author name */
+    color: #d7dadc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for the category link */
+.meta a[href*="category"]:hover {
+    color: #ff4500; /* Accent color on hover */
+}
+
+/* Timestamp Styling */
+.meta span:not(.author-wrapper) { /* Target the timestamp text */
+    font-weight: 400; /* Lighter weight for the timestamp */
+    color: #818384; /* Slightly muted color for hierarchy */
+}
+
+/* Remove the • separators (since we're using gap) */
+.meta::before,
+.meta::after,
+.meta > * + *:before {
+    content: none; /* Remove pseudo-elements if any */
+}
+.meta > * + *:before {
+    content: "•"; /* Re-add the separator */
+    margin: 0 6px; /* Space around the separator */
+    color: #818384; /* Muted color for the separator */
+}
+
+/* Fallback for Missing Avatars */
+.meta .author-avatar[src*="gravatar.com/avatar/00000000000000000000000000000000"],
+.meta .author-avatar:not([src]) {
+    background: #1a1a1b; /* Darker background for contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #d7dadc;
+}
+
+/* Add a user icon as a fallback */
+.meta .author-avatar[src*="gravatar.com/avatar/00000000000000000000000000000000"]::before,
+.meta .author-avatar:not([src])::before {
+    content: "\f007"; /* Font Awesome user icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+/* Ensure RTL Support */
+body[direction="rtl"] .meta {
+    flex-direction: row; /* Keep elements in the correct order in RTL */
+}
+
+body[direction="rtl"] .meta .author-wrapper {
+    flex-direction: row; /* Avatar before name in RTL */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .meta {
+        gap: 8px; /* Smaller gap on mobile */
+        padding: 6px 10px; /* Smaller padding on mobile */
+        font-size: 13px; /* Slightly smaller font */
+    }
+    .meta .author-avatar {
+        width: 22px; /* Smaller avatar on mobile */
+        height: 22px;
+    }
+    .meta .author-wrapper {
+        gap: 6px; /* Smaller gap on mobile */
+    }
+}
+
+.reddit-post:hover {
+    background: #212122;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-vote{
+    display: none;
+}
+
+.vote-box {
+    width: 40px;
+    text-align: center;
+    padding-top: 5px;
+    margin-right: 12px;
+}
+
+.vote-box .upvote, .vote-box .downvote {
+    display: block;
+    font-size: 18px;
+    color: #818384;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.vote-box .upvote:hover {
+    color: #ff4500;
+    transform: translateY(-2px);
+}
+
+.vote-box .downvote:hover {
+    color: #7193ff;
+    transform: translateY(2px);
+}
+
+.vote-box .vote-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d7dadc;
+    margin: 5px 0;
+}
+
+.post-content {
+    flex: 1;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.post-header .post-actions .join-btn {
+    background: #0079d3;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.post-header .post-actions .join-btn:hover {
+    background: #1a8cff;
+    transform: translateY(-2px);
+}
+
+.post-content h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    line-height: 1.4;
+}
+
+.post-content h2 a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-content h2 a:hover {
+    color: #d7dadc;
+}
+
+.post-image {
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.post-footer {
+    display: flex;
+    align-items: center;
+}
+
+.post-footer a {
+    color: #818384;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.post-footer a:hover {
+    color: #fff;
+    background: #272729;
+}
+
+.post-footer a i {
+    margin-left: 7px;
+}
+
+.post-footer .more-btn {
+    margin-right: auto;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+    width: 300px;
+    padding: 20px;
+    border-left: 1px solid #707073;
+}
+
+.community-box {
+    background: #1a1a1b;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.community-box h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #d7dadc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.community-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.community-box ul li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.community-box ul li img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.community-box ul li a {
+    color: #d7dadc;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.community-box ul li a:hover {
+    color: #fff;
+}
+
+.community-box ul li span {
+    color: #818384;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.community-box .see-more {
+    display: block;
+    text-align: right;
+    color: #0079d3;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.community-box .see-more:hover {
+    color: #1a8cff;
+}
+
+/* Login Page */
+.login-page {
+    background: #1a1a1b;
+    min-height: calc(100vh - 200px); /* Full height minus header/footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.login-container {
+    background: #212123;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #272729;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.login-container h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #d7dadc;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login-description {
+    font-size: 14px;
+    color: #818384;
+    margin: 0 0 20px;
+    line-height: 1.5;
+}
+
+.login-message {
+    font-size: 14px;
+    color: #d7dadc;
+    margin: 0 0 20px;
+}
+
+.login-message a {
+    color: #0079d3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-message a:hover {
+    color: #ff4500;
+}
+
+.login-error {
+    font-size: 14px;
+    color: #ff4500;
+    background: rgba(255, 69, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+    margin: 0 0 20px;
+}
+
+#reddit-lite-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#reddit-lite-login-form p {
+    margin: 0;
+}
+
+#reddit-lite-login-form label {
+    font-size: 14px;
+    color: #d7dadc;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+#reddit-lite-login-form input[type="text"],
+#reddit-lite-login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #d7dadc;
+    background: #2a2a2b;
+    border: 1px solid #272729;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+#reddit-lite-login-form input[type="text"]:focus,
+#reddit-lite-login-form input[type="password"]:focus {
+    border-color: #ff4500;
+    outline: none;
+}
+
+#reddit-lite-login-form .login-remember {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#reddit-lite-login-form input[type="checkbox"] {
+    margin: 0;
+}
+
+#reddit-lite-login-form input[type="submit"] {
+    background: #ff4500;
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#reddit-lite-login-form input[type="submit"]:hover {
+    background: #e03e00;
+    transform: translateY(-1px);
+}
+
+.login-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.login-links a {
+    font-size: 14px;
+    color: #0079d3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+    color: #ff4500;
+}
+
+.go-back-button {
+    display: inline-block; 
+    padding: 10px 20px; 
+    background-color: #ff4500; 
+    color: #fff; 
+    border-radius: 5px; 
+    text-decoration: none;
+}
+.go-back-button:hover {
+    background-color: #c63501; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-page {
+        padding: 30px 15px;
+    }
+
+    .login-container {
+        padding: 30px;
+        max-width: 350px;
+    }
+
+    .login-container h2 {
+        font-size: 22px;
+    }
+
+    .login-description,
+    .login-message,
+    .login-error,
+    #reddit-lite-login-form label,
+    #reddit-lite-login-form input[type="text"],
+    #reddit-lite-login-form input[type="password"],
+    #reddit-lite-login-form input[type="submit"],
+    .login-links a {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        max-width: 300px;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+    }
+
+    .login-description,
+    .login-message,
+    .login-error,
+    #reddit-lite-login-form label,
+    #reddit-lite-login-form input[type="text"],
+    #reddit-lite-login-form input[type="password"],
+    #reddit-lite-login-form input[type="submit"],
+    .login-links a {
+        font-size: 12px;
+    }
+
+    #reddit-lite-login-form input[type="text"],
+    #reddit-lite-login-form input[type="password"],
+    #reddit-lite-login-form input[type="submit"] {
+        padding: 8px;
+    }
+
+    .login-links {
+        gap: 15px;
+    }
+}
+
+/* Footer */
+footer {
+    background: #1a1a1b; /* Dark background consistent with the theme */
+    padding: 40px 0 60px; /* Increased bottom padding for the copyright */
+    border-top: 1.9px solid #707073;
+}
+
+/* Widget Area */
+.footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Wider columns for a more professional layout */
+    gap: 40px; /* Increased gap for better spacing */
+    margin-bottom: 60px; /* Increased spacing below the widget area */
+    padding: 20px 0; /* Subtle padding for a clean look */
+}
+
+.footer-widget {
+    padding: 20px; /* Add padding for content */
+    background: #212123; /* Slightly lighter background for contrast */
+    border-radius: 6px; /* Subtle rounded corners */
+    border: 1px solid #272729; /* Subtle border for definition */
+    transition: transform 0.2s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.footer-widget:hover {
+    transform: translateY(-2px); /* Subtle lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow on hover */
+}
+
+.footer-widget h4 {
+    font-size: 16px; /* Slightly larger for headings */
+    font-weight: 700; /* Bold for emphasis */
+    color: #d7dadc; /* Light gray for headings */
+    margin: 0 0 15px; /* Balanced spacing */
+    text-transform: uppercase; /* Uppercase for professionalism */
+    letter-spacing: 1px; /* Refined letter spacing */
+    border-bottom: 1px solid #333; /* Subtle divider below the heading */
+    padding-bottom: 8px; /* Space below the divider */
+}
+
+.footer-widget p,
+.footer-widget ul,
+.footer-widget li {
+    font-size: 14px; /* Professional font size for widget content */
+    color: #818384; /* Light gray for secondary text */
+    margin: 0 0 10px; /* Balanced spacing */
+    line-height: 1.6; /* Improved readability */
+}
+
+.footer-widget a {
+    color: #0079d3; /* Blue for links, consistent with the theme */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-widget a:hover {
+    color: #ff4500; /* Theme accent color on hover */
+}
+
+/* Footer Content (Links) */
+.footer-content {
+    text-align: center;
+    margin-bottom: 50px; /* Spacing below the links */
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Increased gap for better separation */
+    flex-wrap: wrap;
+}
+
+.footer-links li {
+    margin: 0;
+}
+
+.footer-links a {
+    font-size: 14px; /* Slightly larger for readability */
+    font-weight: 500; /* Medium weight for a polished look */
+    color: #818384; /* Light gray for links */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+.footer-links a:hover {
+    color: #ff4500; /* Theme accent color on hover */
+    transform: translateY(-1px); /* Subtle lift on hover */
+}
+
+/* Footer Bottom (Copyright) */
+.footer-bottom {
+    display: flex; /* Use flexbox for precise centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.footer-copyright {
+    font-size: 20px; /* Slightly larger for more prominence */
+    font-weight: 500; /* Medium weight for a polished look */
+    color: #d7dadc; /* Lighter gray for prominence */
+    margin: 0;
+    line-height: 1.4; /* Adjusted for better readability */
+    letter-spacing: 0.5px; /* Subtle letter spacing for refinement */
+    text-transform: uppercase; /* Uppercase for a professional look */
+}
+
+/* Remove sidebar footer styles */
+.right-sidebar .sidebar-footer,
+.right-sidebar .sidebar-copyright {
+    display: none;
+}
+
+.left-sidebar.active {
+    display: block; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    footer {
+        padding: 30px 0 50px; /* Adjusted padding */
+    }
+
+    .footer-widgets {
+        gap: 30px; /* Reduced gap */
+        margin-bottom: 40px; /* Reduced spacing */
+        padding: 15px 0;
+    }
+
+    .footer-widget {
+        padding: 15px;
+    }
+
+    .footer-widget h4 {
+        font-size: 14px; /* Slightly smaller */
+        letter-spacing: 0.8px;
+    }
+
+    .footer-widget p,
+    .footer-widget ul,
+    .footer-widget li {
+        font-size: 13px; /* Smaller font */
+    }
+
+    .footer-content {
+        margin-bottom: 40px; /* Reduced spacing */
+    }
+
+    .footer-links a {
+        font-size: 13px; /* Smaller font */
+    }
+
+    .footer-links {
+        gap: 20px; /* Reduced gap */
+    }
+
+    .footer-copyright {
+        font-size: 16px; /* Slightly smaller but still prominent */
+    }
+
+    .footer-bottom {
+        padding: 20px 0; /* Reduced padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-widgets {
+        gap: 20px;
+    }
+
+    .footer-widget {
+        padding: 10px;
+    }
+
+    .footer-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 15px;
+    }
+
+    .footer-links a {
+        font-size: 12px; /* Smaller font */
+    }
+
+    .footer-copyright {
+        font-size: 14px; /* Smaller font for very small screens */
+    }
+    .sidebar-toggle {
+        top: 8px;
+        left: 8px;
+        padding: 5px 8px; /* Compact for very small screens */
+        font-size: 16px; /* Smaller icon */
+    }
+}
+    
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .left-sidebar, .right-sidebar{
+        display: none;
+    }
+    .sidebar-toggle {
+        display: block; /* Show on tablet and below */
+    }
+    .main-content {
+        width: 100%;
+        border-left: none;
+        border-right: none;
+    }
+    .top-post-card {
+        flex: 1 1 calc(50% - 10px);
+    }
+    .right-sidebar .sidebar-footer {
+        padding-top: 15px;
+    }
+
+    .right-sidebar .sidebar-footer h4 {
+        font-size: 13px;
+    }
+
+    .right-sidebar .sidebar-footer a,
+    .right-sidebar .sidebar-copyright {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        flex-wrap: wrap;
+        padding: 10px;
+        height: 100px;
+        height: auto; /* Override the 100px height for a more compact header */
+        min-height: 60px; /* Ensure the header doesn't collapse too much */
+    }
+    .top-nav .search-bar {
+        margin: 0;
+        order: 2;
+        flex: 0 0 auto; /* Prevent it from taking full width */
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; /* Align the search icon to the right in RTL */
+    }
+    .desktop-search {
+        display: none;
+    }
+    .mobile-search-icon {
+        display: inline-block; /* Ensure the search icon is visible */
+    }
+    .top-nav .mobile-search-icon {
+        display: block; /* Show the search icon on mobile */
+        padding: 8px; /* Add padding for better touch target */
+    }
+    .top-nav .nav-actions {
+        order: 2;
+    }
+    
+    .top-nav .nav-actions .nav-text {
+        display: none; /* Hide text on mobile */
+    }
+    .top-nav .nav-actions .nav-icon {
+        display: inline-block; /* Show icons on mobile */
+    }
+    .top-nav .nav-actions a {
+        font-size: 18px; /* Ensure icon size is appropriate */
+    }
+    .top-nav .nav-actions a:hover .nav-icon i {
+        color: #ff4500; /* Hover color for icons */
+    }
+
+    .top-nav .nav-actions a.login,
+    .top-nav .nav-actions a.logout,
+    .top-nav .nav-actions a.admin-login,
+    .top-nav .nav-actions a.today-posts {
+        font-size: 18px; /* Restore font size for icons */
+    }
+    .top-nav .nav-actions a.login i,
+    .top-nav .nav-actions a.logout i,
+    .top-nav .nav-actions a.admin-login i,
+    .top-nav .nav-actions a.today-posts i {
+        display: inline-block; /* Ensure icons are visible on mobile */
+        margin-right: 0;
+    }
+    .top-nav .nav-actions a.login:hover,
+    .top-nav .nav-actions a.logout:hover,
+    .top-nav .nav-actions a.admin-login:hover,
+    .top-nav .nav-actions a.today-posts:hover {
+        color: #ff4500; /* Hover color for icons */
+    }
+    .top-post-card {
+        flex: 1 1 100%;
+    }
+    .reddit-post {
+        flex-direction: column;
+    }
+    .vote-box {
+        display: flex;
+        align-items: center;
+        width: auto;
+        margin-right: 0;
+        padding: 5px 10px;
+    }
+    .vote-box .vote-count {
+        padding: 0 10px;
+    }
+    .post-image {
+        padding: 5px;
+    }
+    .sidebar-toggle {
+        padding: 6px 10px; /* Slightly smaller padding on mobile */
+        font-size: 18px; /* Slightly smaller icon */
+    }
+    
+    .desktop-vote{
+        display: none;
+    }
+    .mobile-vote{
+        display: block;
+    }
+    .post-header .post-actions .join-btn { 
+        display: none;
+    }
+}
